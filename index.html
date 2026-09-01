@@ -613,18 +613,32 @@
     data.clasificacion = clasificacion;
 
     // ── REEMPLAZÁ esta URL con tu Google Apps Script Web App URL ──
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkewhEw0V_F3_Bm_Y-KFKauvg0PP7QpodAIrlB4ZoXnuAPqxZPmXzH6AolmYaKleE_wQ/exec';
+const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1544470128882880655/63gYnNuMxjYwaQnNoZILLhN4zT7Dng2Aq9aswHzdpF-5Vm2ndk32knn5Z1OZazms4vJK';
 
-    try {
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-    } catch(err) {
-      // Igual mostramos success — el dato puede haberse guardado
-    }
+try {
+  await fetch(DISCORD_WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      content: `🔔 NUEVO LEAD - ${data.nombre}`,
+      embeds: [{
+        color: 3447003,
+        fields: [
+          { name: 'Nombre', value: data.nombre, inline: true },
+          { name: 'WhatsApp', value: data.telefono, inline: true },
+          { name: 'Tipo', value: data.tipo, inline: false },
+          { name: 'M²', value: data.m2, inline: true },
+          { name: 'Terreno', value: data.terreno, inline: true },
+          { name: 'Zona', value: data.zona, inline: false },
+          { name: 'Timeline', value: data.plazo, inline: true },
+          { name: 'Notas', value: data.notas || '(sin notas)', inline: false }
+        ]
+      }]
+    })
+  });
+} catch(err) {
+  console.error('Error:', err);
+}
 
     // Mostrar éxito
     form.style.display = 'none';
