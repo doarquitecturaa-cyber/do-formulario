@@ -613,10 +613,10 @@
     data.clasificacion = clasificacion;
 
     // ── REEMPLAZÁ esta URL con tu Google Apps Script Web App URL ──
-const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1544470128882880655/63gYnNuMxjYwaQnNoZILLhN4zT7Dng2Aq9aswHzdpF-5Vm2ndk32knn5Z1OZazms4vJK';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzB9_nqB7Nv0UR-nElyZR-JtChx4jUOFvFh7uzDald349wTeu0jy5P4WGdf-FV2XZcDqw/exec';
 
 try {
-  await fetch(DISCORD_WEBHOOK, {
+  await fetch(SCRIPT_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
