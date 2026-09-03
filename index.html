@@ -619,22 +619,7 @@ try {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      content: `🔔 NUEVO LEAD - ${data.nombre}`,
-      embeds: [{
-        color: 3447003,
-        fields: [
-          { name: 'Nombre', value: data.nombre, inline: true },
-          { name: 'WhatsApp', value: data.telefono, inline: true },
-          { name: 'Tipo', value: data.tipo, inline: false },
-          { name: 'M²', value: data.m2, inline: true },
-          { name: 'Terreno', value: data.terreno, inline: true },
-          { name: 'Zona', value: data.zona, inline: false },
-          { name: 'Timeline', value: data.plazo, inline: true },
-          { name: 'Notas', value: data.notas || '(sin notas)', inline: false }
-        ]
-      }]
-    })
+    body: JSON.stringify(data)
   });
 } catch(err) {
   console.error('Error:', err);
