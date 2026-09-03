@@ -591,17 +591,19 @@
 
     data.clasificacion = clasificacion;
 
-    try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbwTwS-nAyGDKIzY7St5GEG3ND6iiJKnXR1GQHBUC1ekuxcI3M7742qBMEuRPOUebRsg/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      
-      console.log('Respuesta:', response.status);
-    } catch(err) {
-      console.error('Error:', err);
-    }
+try {
+  const response = await fetch('https://do-formulario.vercel.app/api/formulario', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  console.log('Respuesta:', response.status);
+} catch (err) {
+  console.error('Error:', err);
+}
 
     // Mostrar éxito
     form.style.display = 'none';
