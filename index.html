@@ -5,254 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulta DO Construcciones</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .container {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      max-width: 500px;
-      width: 100%;
-      padding: 40px;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .header h1 {
-      color: #333;
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .header p {
-      color: #666;
-      font-size: 14px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      color: #333;
-      font-weight: 500;
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 14px;
-      font-family: inherit;
-      transition: border-color 0.3s;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-    }
-
-    button:active {
-      transform: translateY(0);
-    }
-
-    .success-message {
-      display: none;
-      text-align: center;
-      color: #27ae60;
-      padding: 30px 20px;
-    }
-
-    .success-message h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .success-message p {
-      color: #666;
-      font-size: 14px;
-    }
-
-    .checkmark {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    .required {
-      color: #e74c3c;
-    }
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+    form { background: #f5f5f5; padding: 20px; border-radius: 8px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+    button { width: 100%; padding: 12px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #555; }
+    .success { display: none; text-align: center; color: green; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>DO Construcciones</h1>
-      <p>Solicita tu presupuesto sin compromiso</p>
+  <h1>DO Construcciones</h1>
+  <form id="formularioConsulta">
+    <div class="form-group">
+      <label>Nombre *</label>
+      <input type="text" name="nombre" required>
     </div>
-
-    <form id="formularioConsulta">
-      <div class="form-group">
-        <label for="nombre">Nombre <span class="required">*</span></label>
-        <input type="text" id="nombre" name="nombre" required>
-      </div>
-
-      <div class="form-group">
-        <label for="telefono">WhatsApp <span class="required">*</span></label>
-        <input type="text" id="telefono" name="telefono" placeholder="2477 XXXXXX" required>
-      </div>
-
-      <div class="form-group">
-        <label for="tipo">Tipo de proyecto <span class="required">*</span></label>
-        <select id="tipo" name="tipo" required>
-          <option value="">Selecciona una opción</option>
-          <option value="Ampliación de casa existente">Ampliación de casa existente</option>
-          <option value="Casa nueva desde cero">Casa nueva desde cero</option>
-          <option value="Remodelación">Remodelación</option>
-          <option value="Consultoría técnica">Consultoría técnica</option>
-          <option value="Otro">Otro</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="m2">Metros cuadrados <span class="required">*</span></label>
-        <select id="m2" name="m2" required>
-          <option value="">Selecciona rango</option>
-          <option value="Menos de 30 m²">Menos de 30 m²</option>
-          <option value="30 a 60 m²">30 a 60 m²</option>
-          <option value="60 a 100 m²">60 a 100 m²</option>
-          <option value="Más de 100 m²">Más de 100 m²</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="terreno">¿Tienes terreno? <span class="required">*</span></label>
-        <select id="terreno" name="terreno" required>
-          <option value="">Selecciona opción</option>
-          <option value="Sí, tengo terreno o casa propia">Sí, tengo terreno o casa propia</option>
-          <option value="No, necesito asesoramiento">No, necesito asesoramiento</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="zona">¿De qué zona sos? <span class="required">*</span></label>
-        <select id="zona" name="zona" required>
-          <option value="">Selecciona zona</option>
-          <option value="Pergamino">Pergamino</option>
-          <option value="Zona cercana">Zona cercana (hasta 30 km)</option>
-          <option value="Otra provincia">Otra provincia</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="plazo">¿Cuándo querés empezar? <span class="required">*</span></label>
-        <select id="plazo" name="plazo" required>
-          <option value="">Selecciona plazo</option>
-          <option value="El próximo mes">El próximo mes</option>
-          <option value="En 2 a 3 meses">En 2 a 3 meses</option>
-          <option value="En 6 meses o más">En 6 meses o más</option>
-          <option value="Sin plazo definido">Sin plazo definido</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="notas">Notas adicionales</label>
-        <textarea id="notas" name="notas" placeholder="Cuéntanos más sobre tu proyecto..."></textarea>
-      </div>
-
-      <button type="submit">Enviar consulta</button>
-    </form>
-
-    <div id="successMsg" class="success-message">
-      <div class="checkmark">✓</div>
-      <h2>¡Consulta recibida!</h2>
-      <p>Nos pondremos en contacto a la brevedad.</p>
+    <div class="form-group">
+      <label>WhatsApp *</label>
+      <input type="text" name="telefono" required>
     </div>
+    <div class="form-group">
+      <label>Tipo de proyecto *</label>
+      <select name="tipo" required>
+        <option>Ampliación de casa existente</option>
+        <option>Casa nueva desde cero</option>
+        <option>Remodelación</option>
+        <option>Consultoría técnica</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Metros cuadrados *</label>
+      <select name="m2" required>
+        <option>Menos de 30 m²</option>
+        <option>30 a 60 m²</option>
+        <option>60 a 100 m²</option>
+        <option>Más de 100 m²</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>¿Tienes terreno? *</label>
+      <select name="terreno" required>
+        <option>Sí, tengo terreno o casa propia</option>
+        <option>No, necesito asesoramiento</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>¿De qué zona sos? *</label>
+      <select name="zona" required>
+        <option>Pergamino</option>
+        <option>Zona cercana</option>
+        <option>Otra provincia</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>¿Cuándo querés empezar? *</label>
+      <select name="plazo" required>
+        <option>El próximo mes</option>
+        <option>En 2 a 3 meses</option>
+        <option>En 6 meses o más</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Notas adicionales</label>
+      <textarea name="notas"></textarea>
+    </div>
+    <button type="submit">Enviar consulta</button>
+  </form>
+  <div id="successMsg" class="success">
+    <h2>¡Consulta recibida!</h2>
+    <p>Nos pondremos en contacto a la brevedad.</p>
   </div>
 
   <script>
     const SCRIPT_URL_NEXT = 'https://dogestion.vercel.app/api/formulario';
     const SCRIPT_URL_SHEETS = 'https://script.google.com/macros/s/AKfycbzB9_nqB7Nv0UR-nElyZR-JtChx4jUOFvFh7uzDald349wTeu0jy5P4WGdf-FV2XZcDqw/exec';
 
-    const form = document.getElementById('formularioConsulta');
-
-    form.addEventListener('submit', async (e) => {
+    document.getElementById('formularioConsulta').addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      const formData = new FormData(form);
+      const formData = new FormData(e.target);
       const data = Object.fromEntries(formData);
 
       try {
-        // Enviar a Next.js (Discord + Supabase)
-        await fetch(SCRIPT_URL_NEXT, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-
-        // Enviar a Google Sheets (Apps Script)
-        await fetch(SCRIPT_URL_SHEETS, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-
-        // Mostrar éxito
-        form.style.display = 'none';
+        await fetch(SCRIPT_URL_NEXT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        await fetch(SCRIPT_URL_SHEETS, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        e.target.style.display = 'none';
         document.getElementById('successMsg').style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } catch (err) {
-        console.error('Error:', err);
-        // Igual mostramos success — los datos pueden haberse guardado
-        form.style.display = 'none';
-        document.getElementById('successMsg').style.display = 'block';
-      }
+      } catch(err) { console.error(err); }
     });
   </script>
 </body>
