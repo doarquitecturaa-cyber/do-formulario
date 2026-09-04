@@ -608,11 +608,7 @@ console.log("DESPUÉS DEL FETCH", response.status);
 
 const texto = await response.text();
 console.log("RESPUESTA:", texto);
-
-  console.log("Status:", response.status);
-
-  const texto = await response.text();
-  console.log("Respuesta:", texto);
+console.log("Status:", response.status);
 
 } catch (err) {
   console.error("ERROR COMPLETO:", err);
